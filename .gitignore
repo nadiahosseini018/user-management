@@ -1,0 +1,13 @@
+.env
+
+# binaries
+bin/
+dist/
+
+# OS
+.DS_Store
+
+# Go
+*.exe
+*.test
+*.out
