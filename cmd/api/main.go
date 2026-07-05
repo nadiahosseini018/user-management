@@ -24,11 +24,13 @@ func main() {
 	if err != nil {
 		e.Logger.Fatal(err)
 	}
+	e.Logger.Info("Database connected successfully")
+
 	err = gdb.AutoMigrate(&user.User{})
 	if err != nil {
 		e.Logger.Fatal("Migration failed", err)
 	}
-	e.Logger.Info("Database connected successfully")
+	e.Logger.Info("Database migrated successfully")
 
 	userService := user.NweService(user.Service{DB: gdb})
 	userHandler := user.Handler(user.Handler{Service: userService})
@@ -37,6 +39,5 @@ func main() {
 	healthHander := health.NewHandler(health.Handler{})
 	healthHander.SetRoute(e.Group("/health"))
 
-	e.Logger.Info("Database migrated successfully")
 	e.Logger.Fatal(e.Start(":" + cfg.AppPort))
 }
