@@ -1,4 +1,4 @@
-package models
+package user
 
 import "time"
 
@@ -9,4 +9,10 @@ type User struct {
 	Password  string `gorm:"not null" json:"-"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
+}
+
+type UserRegisterRequest struct {
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
 }
